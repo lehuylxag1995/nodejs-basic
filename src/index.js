@@ -3,11 +3,12 @@ const handlebars  = require('express-handlebars');
 const path = require('path');
 const morgan = require('morgan');
 
-
-
 //Express
 const app = express();
 const port = 3000;
+
+//config static file
+app.use(express.static(path.join(__dirname,'public')));
 
 //Template engineer
 app.engine('.hbs', handlebars({
@@ -16,10 +17,8 @@ app.engine('.hbs', handlebars({
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
 
-
 //Morgan
 app.use(morgan(':method :url :status'));
-
 
 
 app.get('/', (req, res) => {
@@ -29,8 +28,6 @@ app.get('/', (req, res) => {
 app.get('/news',(req,res)=>{
     res.render('news');
 });
-
-
 
 
 app.listen(port, () => {
