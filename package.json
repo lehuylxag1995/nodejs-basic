@@ -1,0 +1,31 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "day la du an dau tien nodejs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js localhost 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lehuylxag1995/nodejs-basic.git"
+  },
+  "keywords": [
+    "nodejs",
+    "blog",
+    "expressjs",
+    "lehuy"
+  ],
+  "author": "Lê Huy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lehuylxag1995/nodejs-basic.git"
+  },
+  "homepage": "https://github.com/lehuylxag1995/nodejs-basic#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12"
+  }
+}
