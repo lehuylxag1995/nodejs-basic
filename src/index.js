@@ -2,7 +2,8 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const path = require('path');
 const morgan = require('morgan');
-const router = express.Router();
+const route = require('./routes');
+
 
 //Express
 const app = express();
@@ -28,14 +29,8 @@ app.set('views', path.join(__dirname, 'resources/views'));
 //Morgan
 // app.use(morgan(':method :url :status'));
 
-
-app.get('/', (req, res) => {
-    res.render('home');
-});
-
-app.get('/news', (req, res) => {
-    res.render('news');
-});
+//Route
+route(app);
 
 
 app.listen(port, () => {
