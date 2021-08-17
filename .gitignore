@@ -1,5 +1,5 @@
 # Thư mục node modules
 .vscode
 .eslintrc.json
-.eslintcache
+.prettierrc.json
 node_modules/
