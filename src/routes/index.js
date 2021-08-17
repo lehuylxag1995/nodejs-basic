@@ -1,6 +1,8 @@
 const newsRouter = require('./news')
+const homeRouter = require('./home')
 
-function routes (app) {
+function routes(app) {
+  app.use('/', homeRouter)
   app.use('/news', newsRouter)
 }
 

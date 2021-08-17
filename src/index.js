@@ -3,6 +3,10 @@ const handlebars = require('express-handlebars')
 const path = require('path')
 // const morgan = require('morgan')
 const route = require('./routes')
+const db = require('./config/db')
+
+// Connect to database
+db.connectDatabase()
 
 // Express
 const app = express()
@@ -14,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // config middleware
 app.use(
   express.urlencoded({
-    extended: true
+    extended: true,
   })
 )
 app.use(express.json())
@@ -23,7 +27,7 @@ app.use(express.json())
 app.engine(
   '.hbs',
   handlebars({
-    extname: '.hbs'
+    extname: '.hbs',
   })
 )
 app.set('view engine', '.hbs')
