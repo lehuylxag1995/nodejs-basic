@@ -1,6 +1,5 @@
 # Thư mục node modules
 .vscode
-.eslintcache
 .eslintrc.json
+.eslintcache
 node_modules/
-
