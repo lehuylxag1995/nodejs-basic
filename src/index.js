@@ -1,38 +1,40 @@
-const express = require('express');
-const handlebars = require('express-handlebars');
-const path = require('path');
-const morgan = require('morgan');
-const route = require('./routes');
+const express = require('express')
+const handlebars = require('express-handlebars')
+const path = require('path')
+// const morgan = require('morgan')
+const route = require('./routes')
 
+// Express
+const app = express()
+const port = 3000
 
-//Express
-const app = express();
-const port = 3000;
+// config static file
+app.use(express.static(path.join(__dirname, 'public')))
 
-//config static file
-app.use(express.static(path.join(__dirname, 'public')));
-
-//config middleware
-app.use(express.urlencoded({
+// config middleware
+app.use(
+  express.urlencoded({
     extended: true
-}));
-app.use(express.json());
+  })
+)
+app.use(express.json())
 
+// Template engineer
+app.engine(
+  '.hbs',
+  handlebars({
+    extname: '.hbs'
+  })
+)
+app.set('view engine', '.hbs')
+app.set('views', path.join(__dirname, 'resources/views'))
 
-//Template engineer
-app.engine('.hbs', handlebars({
-    extname: ".hbs"
-}));
-app.set('view engine', '.hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
-
-//Morgan
+// Morgan
 // app.use(morgan(':method :url :status'));
 
-//Route
-route(app);
-
+// Route
+route(app)
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-});
+  console.log(`Example app listening at http://localhost:${port}`)
+})
