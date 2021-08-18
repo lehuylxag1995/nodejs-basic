@@ -7,7 +7,6 @@ class HomeController {
     //   if (!err) res.json(course)
     //   else res.status(500).json({ err: 'lỗi' })
     // })
-
     Course.find({})
       .then((courses) => {
         courses = courses.map((khoahoc) => khoahoc.toObject())
