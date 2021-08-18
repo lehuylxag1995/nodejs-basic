@@ -1,4 +1,7 @@
 # Thư mục node modules
 .vscode
 .eslintrc.json
+.husky/
+.prettierrc.json
+nodemon.json
 node_modules/
