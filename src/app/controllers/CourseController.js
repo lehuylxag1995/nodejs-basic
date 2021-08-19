@@ -27,6 +27,23 @@ class CourseController {
         res.send(error)
       })
   }
+
+  // GET /course/:id/edit
+  edit(req, res, next) {
+    CourseModel.findById(req.params.id)
+      .lean()
+      .then((coursById) => {
+        res.render('course/edit', { coursById })
+      })
+      .catch(next)
+  }
+
+  // PUT /course/:id
+  update(req, res, next) {
+    CourseModel.updateOne({ _id: req.params.id }, req.body)
+      .then(() => res.redirect('/me/course/list'))
+      .catch(next)
+  }
 }
 
 module.exports = new CourseController()
