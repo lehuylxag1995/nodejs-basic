@@ -1,5 +1,4 @@
 const CourseModel = require('../models/Course')
-
 class CourseController {
   // GET /course/:slug
   show(req, res, next) {
@@ -40,6 +39,7 @@ class CourseController {
 
   // PUT /course/:id
   update(req, res, next) {
+    req.body.image = `https://img.youtube.com/vi/${req.body.videoID}/sddefault.jpg`
     CourseModel.updateOne({ _id: req.params.id }, req.body)
       .then(() => res.redirect('/me/course/list'))
       .catch(next)

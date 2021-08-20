@@ -1,7 +1,6 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
 const path = require('path')
-// const morgan = require('morgan')
 const route = require('./routes')
 const db = require('./config/db')
 const methodOverride = require('method-override')
@@ -38,12 +37,9 @@ app.engine(
 app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname, 'resources/views'))
 
-// Morgan
-// app.use(morgan(':method :url :status'));
-
 // Route
 route(app)
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`http://localhost:${port}`)
 })
