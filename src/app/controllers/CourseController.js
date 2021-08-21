@@ -17,14 +17,12 @@ class CourseController {
   // POST /course/store
   store(req, res, next) {
     const formBody = req.body
-    formBody.image = 'https://picsum.photos/640/480'
+    formBody.image = `https://img.youtube.com/vi/${req.body.videoID}/sddefault.jpg`
     const course = new CourseModel(formBody)
     course
       .save()
       .then(() => res.redirect('/'))
-      .catch((error) => {
-        res.send(error)
-      })
+      .catch(next)
   }
 
   // GET /course/:id/edit
@@ -42,6 +40,13 @@ class CourseController {
     req.body.image = `https://img.youtube.com/vi/${req.body.videoID}/sddefault.jpg`
     CourseModel.updateOne({ _id: req.params.id }, req.body)
       .then(() => res.redirect('/me/course/list'))
+      .catch(next)
+  }
+
+  // DELETE /course/:id
+  destroy(req, res, next) {
+    CourseModel.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect('back'))
       .catch(next)
   }
 }
