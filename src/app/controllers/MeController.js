@@ -2,18 +2,6 @@ const Course = require('../models/Course')
 
 class MeController {
   // GET /me/course/list
-  // listCourse(req, res, next) {
-  //   Promise.all([Course.find({}).lean(), Course.countDocumentsDeleted().lean()])
-  //     .then(([courses, countDocumentDeleted]) => {
-  //       res.render('me/list-course', {
-  //         courses,
-  //         countDocumentDeleted
-  //       })
-  //     })
-  //     .catch(next)
-  // }
-
-  // GET /me/course/list
   async listCourse(req, res, next) {
     try {
       const courses = await Course.find({}).lean()
