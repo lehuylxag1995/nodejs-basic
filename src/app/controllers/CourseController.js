@@ -45,7 +45,21 @@ class CourseController {
 
   // DELETE /course/:id
   destroy(req, res, next) {
+    CourseModel.delete({ _id: req.params.id })
+      .then(() => res.redirect('back'))
+      .catch(next)
+  }
+
+  // DELETE /course/:id/force
+  forceDelete(req, res, next) {
     CourseModel.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect('back'))
+      .catch(next)
+  }
+
+  // PATCH /course/:id/restore
+  restore(req, res, next) {
+    CourseModel.restore({ _id: req.params.id })
       .then(() => res.redirect('back'))
       .catch(next)
   }
