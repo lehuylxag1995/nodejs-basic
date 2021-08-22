@@ -82,6 +82,7 @@ class CourseController {
     }
   }
 
+  // POST /course/handleActionMethod
   async handleActionMethodForceDelete(req, res) {
     try {
       const action = req.body.actionMethod
