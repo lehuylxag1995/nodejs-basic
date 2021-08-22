@@ -12,7 +12,7 @@
                     Chọn tất cả
                 </label>
             </div>
-            <select id="select-action-method" class="form-select form-select-sm mx-3" name="action-method"
+            <select id="select-action-method" class="form-select form-select-sm mx-3" name="actionMethod"
                 style="width:150px;" required="required">
                 <option value="" selected>-- Hành động --</option>
                 <option value="delete">Xoá</option>
@@ -37,7 +37,7 @@
                 <tr>
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input form-check-course" name="courseID[]" type="checkbox"
+                            <input class="form-check-input form-check-course" name="courseId[]" type="checkbox"
                                 value="{{this._id}}">
                         </div>
                     </td>
@@ -103,29 +103,28 @@
         })
 
         //process checkbox all to chose all course
-        checkboxAllCourse.change(function () {
+        checkboxAllCourse.off('change').on('change', function () {
             var isCheckboxAllCourse = $(this).is(':checked')
             checkboxCourses.prop('checked', isCheckboxAllCourse)
             renderButtonActionMethod()
         });
 
         //process checkbox course is checked or not checked to checkbox all enable
-        checkboxCourses.change(function () {
+        checkboxCourses.off('change').on('change', function () {
             let lengthNotChecked = checkboxCourses.length
-            let lengthChecked = $('input[name="courseID[]"]:checked').length
+            let lengthChecked = $('input[name="courseId[]"]:checked').length
             let isEqual = lengthChecked === lengthNotChecked ? true : false;
             checkboxAllCourse.prop('checked', isEqual)
             renderButtonActionMethod()
         });
 
         function renderButtonActionMethod() {
-            let lengthChecked = $('input[name="courseID[]"]:checked').length
-            if (lengthChecked > 0) {
+            let lengthChecked = $('input[name="courseId[]"]:checked').length
+            console.log(lengthChecked)
+            if (lengthChecked > 0)
                 btnSubmitCheckboxMethod.removeClass('disabled')
-            }
-            else {
+            else
                 btnSubmitCheckboxMethod.addClass('disabled')
-            }
         }
     });
 </script>

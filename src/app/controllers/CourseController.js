@@ -63,6 +63,45 @@ class CourseController {
       .then(() => res.redirect('back'))
       .catch(next)
   }
+
+  // POST /course/handleActionMethod
+  async handleActionMethod(req, res) {
+    try {
+      const action = req.body.actionMethod
+      switch (action) {
+        case 'delete':
+          await CourseModel.delete({ _id: req.body.courseId })
+          res.redirect('back')
+          break
+        default:
+          res.json({ message: 'Error action method not exist !!' })
+          break
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async handleActionMethodForceDelete(req, res) {
+    try {
+      const action = req.body.actionMethod
+      switch (action) {
+        case 'delete':
+          await CourseModel.deleteMany({ _id: req.body.courseId })
+          res.redirect('back')
+          break
+        case 'restore':
+          await CourseModel.restore({ _id: req.body.courseId })
+          res.redirect('back')
+          break
+        default:
+          res.json({ message: 'Error action method not exist !!' })
+          break
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 module.exports = new CourseController()
