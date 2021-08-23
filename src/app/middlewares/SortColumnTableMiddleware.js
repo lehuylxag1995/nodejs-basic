@@ -6,7 +6,7 @@ module.exports = function SortColumnTableMiddleware(req, res, next) {
 
   if (Object.prototype.hasOwnProperty.call(req.query, '_sort')) {
     res.locals._sort.enable = true
-    // res.locals._sort.column = req.query.column
+    res.locals._sort.column = req.query.column
     res.locals._sort.type = req.query.type
   }
 

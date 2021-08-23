@@ -36,19 +36,26 @@ app.engine(
       sortColumn: (field, resSortLocal) => {
         const icons = {
           default: 'bi bi-arrow-down-up',
-          up: 'bi bi-sort-alpha-down',
-          down: 'bi bi-sort-alpha-down-alt',
+          asc: 'bi bi-sort-alpha-down',
+          desc: 'bi bi-sort-alpha-down-alt',
         }
 
-        // const types = {
-        //   ascending: 'up',
-        //   descending: 'down'
-        // }
+        const types = {
+          default: 'desc',
+          asc: 'desc',
+          desc: 'asc',
+        }
 
-        const icon = icons[resSortLocal.type]
+        let icon = icons.default
+        let type = types.default
 
-        return `<a href="?_sort&column=${field}&type=desc">
-                  <i class="${icon}"></i>
+        if (field === resSortLocal.column) {
+          icon = icons[resSortLocal.type]
+          type = types[resSortLocal.type]
+        }
+
+        return `<a href="?_sort&column=${field}&type=${type}">
+                  <span><i class="${icon}"></i></span>
                 </a>`
       },
     },
