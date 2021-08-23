@@ -4,11 +4,17 @@ class MeController {
   // GET /me/course/list
   async listCourse(req, res, next) {
     try {
-      const courses = await Course.find({}).lean()
+      let courses = await Course.find({}).lean()
+
+      if (Object.prototype.hasOwnProperty.call(req.query, '_sort'))
+        courses = await Course.find({})
+          .sort({ [req.query.column]: `${req.query.type}` })
+          .lean()
+
       const countDocumentDeleted = await Course.countDocumentsDeleted().lean()
       return res.render('me/list-course', { courses, countDocumentDeleted })
     } catch (error) {
-      this.listCourse.catch(next)
+      next(error)
     }
   }
 
